@@ -1,0 +1,13 @@
+FROM continuumio/miniconda3:4.12.0
+
+WORKDIR /usr/src/app
+
+COPY environment.yml .
+
+RUN conda env create -f environment.yml
+
+ENV PATH="/opt/conda/envs/capstone/bin/:${PATH}"
+ENV CONDA_DEFAULT_ENV capstone
+ENV CONDA_PREFIX /opt/conda/env/capstone
+
+EXPOSE 8800

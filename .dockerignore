@@ -1,0 +1,11 @@
+.DS_Store
+*.egg-info
+.coverage
+.git
+.cache
+**/__pycache__
+**/*.pyc
+/data/
+/reports/
+/model/
+out/

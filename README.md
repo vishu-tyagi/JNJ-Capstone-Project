@@ -10,7 +10,7 @@ make test
 make build
 ```
 
-### Fetch raw data
+### Fetch data
 ```
 make fetch
 ```

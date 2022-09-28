@@ -10,7 +10,7 @@ dependencies:
   - plotly==5.10.0
   - boto3==1.24.80
   # Interactive
-  - ipykernel==6.15.2
+  - jupyter
   - matplotlib==3.5.3
   - seaborn==0.12.0
   # Testing

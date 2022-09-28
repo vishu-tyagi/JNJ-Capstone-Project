@@ -1,11 +1,11 @@
 # JNJ-Capstone-Project
 
-### Build the test container and run tests
+### Build test container and run tests
 ```
 make test
 ```
 
-### Build the container
+### Build container
 ```
 make build
 ```
@@ -15,7 +15,12 @@ make build
 make fetch
 ```
 
-## Setup to run jupyter notebooks
+### Build jupyter container and run notebooks
+```
+make notebook
+```
+
+## Setup to run locally
 
 ### Move into top-level directory
 ```
@@ -40,8 +45,6 @@ Including the optional -e flag will install the package in "editable" mode, mean
 
 You can now use the jupyter kernel to run notebooks.
 
-## Develop locally
-
 ### Activate environment
 ```
 conda activate capstone
@@ -50,4 +53,9 @@ conda activate capstone
 ### Fetch data
 ```
 python -m capstone fetch
+```
+
+### Run notebooks
+```
+jupyter notebook notebooks/
 ```

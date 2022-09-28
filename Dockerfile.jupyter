@@ -5,8 +5,6 @@ COPY . .
 
 RUN pip install -e src/capstone
 
-ARG USER_ID
-ARG GROUP_ID
 ARG JUPYTER_PORT
 
 EXPOSE $JUPYTER_PORT

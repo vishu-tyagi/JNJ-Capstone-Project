@@ -6,4 +6,5 @@ data/
 **/*.pyc
 /reports/
 /model/
+/notebooks/.ipynb_checkpoints
 out/

@@ -1,5 +1,8 @@
 # JNJ Capstone Project
-<img src="pic/Johnson-Johnson-Logo.png" alt="image" title="Text to show on mouseover" width='270'/> <img src="pic/columbia_dsi_logo.png" alt="image" title="Text to show on mouseover" width="270"  />
+<p float="left">
+  <img src="pic/Johnson-Johnson-Logo.png" width="270" />
+  <img src="pic/columbia_dsi_logo.png" width="270" /> 
+</p>
 
 #### Problem Statement/ Business Need: 
 
@@ -10,7 +13,8 @@ The GxP regulatory environment is very complex as different countries have their
 - With fine-tuned GPT-3 model, classify requirements by quality topics and classify quality topics requirements into themes; summarize theme requirements into a J&J Quality requirement that meets all the regulations and guidance documents.
 - Build metrics to evaluate the model and benmark using other available large language models as well as traditional machine learning models.
 
-#### Authors:  
+#### Authors: 
+
 Vishweshwar Tyagi (captain), Daoxing Zhang, Siqi He, Siwen Xie, Yihao Gao
 
 #### Sponsor/Mentor: 

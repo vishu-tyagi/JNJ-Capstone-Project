@@ -1,61 +1,23 @@
-# JNJ-Capstone-Project
+# JNJ Capstone Project
+<img src="pic/Johnson-Johnson-Logo.png" alt="image" title="Text to show on mouseover" width='270'/> <img src="pic/columbia_dsi_logo.png" alt="image" title="Text to show on mouseover" width="270"  />
 
-### Build test container and run tests
-```
-make test
-```
+#### Problem Statement/ Business Need: 
 
-### Build container
-```
-make build
-```
+The GxP regulatory environment is very complex as different countries have their own regulations, and standardization is very limited. GxP regulations and guidance documents are thousands of pages of text files (pdf or HTML) posted in several internet locations. These regulatory requirements have to be manually parsed, analyzed, and classified to develop the J&J quality requirements. This is a time-consuming process.
 
-### Fetch data
-```
-make fetch
-```
+#### Project Outcome / Solution:
 
-### Build jupyter container and run notebooks
-```
-make notebook
-```
+- With fine-tuned GPT-3 model, classify requirements by quality topics and classify quality topics requirements into themes; summarize theme requirements into a J&J Quality requirement that meets all the regulations and guidance documents.
+- Build metrics to evaluate the model and benmark using other available large language models as well as traditional machine learning models.
 
-## Setup to run locally
+#### Authors:  
+Vishweshwar Tyagi (captain), Daoxing Zhang, Siqi He, Siwen Xie, Yihao Gao
 
-### Move into top-level directory
-```
-cd JNJ-Capstone-Project
-```
+#### Sponsor/Mentor: 
+Frank Janssens, Majd Mustapha
 
-### Install environment
-```
-conda env create -f environment.yml
-```
+#### Instructor: 
+Adam Kelleher
 
-### Activate environment
-```
-conda activate capstone
-```
-
-### Install package
-```
-pip install -e src/capstone
-```
-Including the optional -e flag will install the package in "editable" mode, meaning that instead of copying the files into your virtual environment, a symlink will be created to the files where they are.
-
-You can now use the jupyter kernel to run notebooks.
-
-### Activate environment
-```
-conda activate capstone
-```
-
-### Fetch data
-```
-python -m capstone fetch
-```
-
-### Run notebooks
-```
-jupyter notebook notebooks/
-```
+#### CA: 
+Xuanyu Li

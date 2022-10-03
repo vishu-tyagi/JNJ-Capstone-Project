@@ -3,8 +3,8 @@
 
 
 <p float="left">
-  <img src="pic/JNJ_logo.png" width='300' />
-  <img src="pic/columbia_dsi_logo.png" width='300'/> 
+  <img src="notebooks/images/JNJ_logo.png" width='300' />
+  <img src="notebooks/images/columbia_dsi_logo.png" width='300'/> 
 </p>
 
 
@@ -16,7 +16,7 @@ The GxP regulatory environment is very complex as different countries have their
 ### Project Outcome / Solution:
 
 - With fine-tuned GPT-3 model, classify requirements by quality topics and classify quality topics requirements into themes; summarize theme requirements into a J&J Quality requirement that meets all the regulations and guidance documents.
-- Build metrics to evaluate the model and benmark using other available large language models as well as traditional machine learning models.
+- Build metrics to evaluate the model and benchmark using other available large language models as well as traditional machine learning models.
 
 ### Authors: 
 
@@ -30,3 +30,81 @@ Adam Kelleher
 
 ### CA: 
 Xuanyu Li
+
+
+
+## Setup Instructions
+
+
+#### Build test container and run tests
+
+```
+make test
+```
+
+#### Build container
+
+```
+make build
+```
+
+#### Fetch data
+
+```
+make fetch
+```
+
+#### Build jupyter container and run notebooks
+
+```
+make notebook
+```
+
+## Setup to run locally
+
+#### Move into top-level directory
+
+```
+cd JNJ-Capstone-Project
+```
+
+#### Install environment
+
+```
+conda env create -f environment.yml
+```
+
+#### Activate environment
+
+```
+conda activate capstone
+```
+
+#### Install package
+
+```
+pip install -e src/capstone
+```
+
+Including the optional -e flag will install the package in "editable" mode, meaning that instead of copying the files into your virtual environment, a symlink will be created to the files where they are.
+
+You can now use the jupyter kernel to run notebooks.
+
+#### Activate environment
+
+```
+conda activate capstone
+```
+
+#### Fetch data
+
+```
+python -m capstone fetch
+```
+
+#### Run notebooks
+
+```
+jupyter notebook notebooks/
+```
+

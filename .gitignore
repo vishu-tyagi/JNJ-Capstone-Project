@@ -7,3 +7,4 @@ data/
 /reports/
 /model/
 out/
+**/*.ipynb_checkpoints

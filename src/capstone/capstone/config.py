@@ -21,3 +21,25 @@ class CapstoneConfig():
 
     # OpenAI beta key
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY_BETA")
+
+    # Features
+    NLP_MODEL = "en_core_web_lg"
+    NLP_STOPWORDS_TO_ADD: set[str] = {}
+    NLP_STOPWORDS_TO_DELETE: set[str] = {}
+
+    TFIDF_FILE_NAME = "vectorizer.pickle"
+    TFIDF_ANALYZERS = {"word"}
+    TFIDF_CHAR_PARAMETERS = {
+        "analyzer": "char",
+        "ngram_range": (3, 3),
+        "max_features": 500,
+        "min_df": 0.001,
+        "max_df": 0.6
+    }
+    TFIDF_WORD_PARAMETERS = {
+        "analyzer": "word",
+        "ngram_range": (2, 3),
+        "max_features": 3000,
+        "min_df": 0.005,
+        "max_df": .725
+    }

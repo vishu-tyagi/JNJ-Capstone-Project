@@ -1,16 +1,23 @@
 import os
-import logging
 from pathlib import Path
-from sys import prefix
+import logging
+import itertools
 
 import boto3
+import pandas as pd
 
 from capstone.config import CapstoneConfig
 from capstone.data_access.helpers import s3_download
 from capstone.utils.constants import (
     DATA_DIR,
     MODEL_DIR,
-    REPORTS_DIR
+    REPORTS_DIR,
+    XLSX_DATA,
+    XLSX_SHEET,
+    TEXT,
+    TARGET,
+    IS_MAPPED,
+    IS_MAPPED_TRUE
 )
 
 logger = logging.getLogger(__name__)
@@ -38,7 +45,7 @@ class DataClass():
         logger.info(f"Created model directory {self.model_path}")
         logger.info(f"Created reports directory {self.reports_path}")
 
-    def _fetch(self):
+    def fetch(self):
         logger.info(f"Downloading s3://{self.s3_bucket}")
         s3_client = boto3.client(
             "s3",
@@ -46,9 +53,17 @@ class DataClass():
             aws_secret_access_key=os.environ["AWS_SECRET_ACCESS_KEY"]
         )
         s3_download(s3_client, self.s3_bucket, self.config.S3_BUCKET_RELEVANT_FILES, self.data_path)
+        logger.info(f"Data available at {self.data_path}")
 
     def build(self):
-        self._fetch()
-        logger.info(
-            f"Data available at {self.data_path}"
-        )
+        xls = pd.ExcelFile(os.path.join(self.data_path, XLSX_DATA))
+        df = pd.read_excel(xls, XLSX_SHEET)
+        df = df[df[IS_MAPPED].isin([IS_MAPPED_TRUE])].copy()
+        df = df[[TEXT, TARGET]].copy()
+        df[TARGET] = \
+            df[TARGET].str.lower() \
+            .apply(lambda x: list(x.split("\n"))) \
+            .apply(lambda x: [y.split(",") for y in x]) \
+            .apply(lambda x: list(itertools.chain(*x))) \
+            .apply(lambda x: [y.strip().replace("-", " ") for y in x if y.strip() != ""])
+        return df

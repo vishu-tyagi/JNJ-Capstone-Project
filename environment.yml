@@ -22,3 +22,5 @@ dependencies:
   - pytest-pycodestyle==2.2.0
   # Pip
   - pip==22.2.2
+  - pip:
+    - xgboost

@@ -17,7 +17,10 @@ from capstone.utils.constants import (
     DATA_DIR,
     MODEL_DIR,
     TEXT,
-    TARGET
+    TARGET,
+    SPLIT,
+    DEVELOP,
+    TEST
 )
 
 logger = logging.getLogger(__name__)
@@ -52,7 +55,7 @@ class Features():
         Y = self.mlb.transform(df[TARGET])
         df = df.join(
             pd.DataFrame(
-                self.mlb.transform(df.pop(TARGET)),
+                self.mlb.transform(df[TARGET]),
                 columns=self.mlb.classes_,
                 index=df.index
             )
@@ -61,7 +64,9 @@ class Features():
             df, Y, test_size=.1, shuffle=True, random_state=64
         )
         dev, test = self.fit_transform(dev), self.transform(test)
-        return dev, test
+        dev[SPLIT], test[SPLIT] = DEVELOP, TEST
+        df = pd.concat([dev, test], ignore_index=True).copy()
+        return df
 
     @timing
     def fit(self, df: pd.DataFrame):

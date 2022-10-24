@@ -9,4 +9,6 @@ TEXT = "Text"
 TARGET = "Standard mapping?"
 IS_MAPPED = "Mapped to a standard?"
 IS_MAPPED_TRUE = "Mapped to a standard"
-
+SPLIT = "Split"
+DEVELOP = "Development"
+TEST = "Test"

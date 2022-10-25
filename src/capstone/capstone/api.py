@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 @timing
 def fetch(config: CapstoneConfig = CapstoneConfig) -> None:
-    logger.info("Fetching raw data...")
+    logger.info("Fetching data...")
     data = DataClass(config)
     data.make_dirs()
     data.build()

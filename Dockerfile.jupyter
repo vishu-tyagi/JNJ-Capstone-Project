@@ -1,0 +1,10 @@
+ARG IMAGE
+FROM ${IMAGE}
+
+COPY . .
+
+RUN pip install -e src/capstone
+
+ARG JUPYTER_PORT
+
+EXPOSE $JUPYTER_PORT

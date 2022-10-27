@@ -25,7 +25,7 @@ Vishweshwar Tyagi (captain), Daoxing Zhang, Siqi He, Siwen Xie, Yihao Gao
 ### Sponsor/Mentor: 
 Frank Janssens, Majd Mustapha
 
-#### Instructor: 
+### Instructor: 
 Adam Kelleher
 
 ### CA: 

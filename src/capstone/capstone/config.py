@@ -16,7 +16,9 @@ class CapstoneConfig():
         "jnj_hygiene_ft_training_data_prepared.jsonl",
         "EudraLex - Chapter 4 - Documentation.xlsx",
         "chapter4_01_2011_en_0.xml",
-        "ANVISA RDC 665_ On the Good Manufacturing Practices of Medical Devices.xml"
+        "ANVISA RDC 665_ On the Good Manufacturing Practices of Medical Devices.xml",
+        "Regulatory Requirements.xlsx",
+        "jnj_hygiene_ft_training_data.csv"
     ]
 
     # OpenAI beta key

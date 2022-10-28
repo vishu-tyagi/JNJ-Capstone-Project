@@ -1,17 +1,16 @@
 import os
 import gc
 import logging
-import pickle
 from pathlib import Path
-from typing import Optional
 
 import pandas as pd
 from sklearn.preprocessing import MultiLabelBinarizer
 from sklearn.model_selection import train_test_split
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
 
 from capstone.config import CapstoneConfig
-from capstone.data_access import DataClass
-from capstone.features.helpers import (spacy_init, spacy_normalize, tfidf_init)
+from capstone.features.helpers import (stopwords_init, tfidf_init)
 from capstone.utils import timing
 from capstone.utils.constants import (
     DATA_DIR,
@@ -34,9 +33,11 @@ class Features():
         self.model_path = Path(os.path.join(self.current_path, MODEL_DIR))
 
         self.mlb = MultiLabelBinarizer()
-        self.nlp = spacy_init()
         self.vectorizer = tfidf_init()
         self.vectorizer_path = os.path.join(self.model_path, config.TFIDF_FILE_NAME)
+
+        self.stopwords = stopwords_init()
+        self.lemmatizer = WordNetLemmatizer()
 
     # def save(self):
     #     processor_path = os.path.join(self.model_path, self.processor_name)
@@ -90,22 +91,20 @@ class Features():
     def clean(self, df: pd.DataFrame):
         df = df.copy()
         df.reset_index(drop=True, inplace=True)
-        logger.info("Cleaning text")
-        # Remove HTML
-        df[TEXT] = df[TEXT].str.replace("<[^<]+?>", " ", regex=True)
-        # Remove emojis
-        df[TEXT] = df[TEXT].astype(str).apply(lambda x: x.encode('ascii', 'ignore').decode('ascii'))
-        # Remove punctuation
-        df[TEXT].str.replace(r"[^\w\s]", "", regex=True)
         # Conver to lower case
         df[TEXT] = df[TEXT].str.lower()
-        # Remove URLs
-        df[TEXT] = df[TEXT].str.replace(r"http\S+|www.\S+", "", regex=True)
-        logger.info("Applying language model")
-        df[TEXT] = pd.Series(self.nlp.pipe(df[TEXT].values))
-        logger.info("Applying lemmatization and removing stopwords")
-        df[TEXT] = \
-            df[TEXT] \
-            .apply(lambda x: spacy_normalize(x, self.nlp.Defaults.stop_words)) \
-            .apply(lambda x: " ".join(x))
+        # Remove HTML
+        df[TEXT] = df[TEXT].str.replace("<[^<]+?>", " ", regex=True)
+        # Remove symbols
+        df[TEXT] = df[TEXT].str.replace(r"[/(){}\[\]\|@,;\-]", " ", regex=True)
+        # Remove punctuation
+        df[TEXT] = df[TEXT].str.replace(r"[^\w\s]", " ", regex=True)
+        # Tokenize
+        df[TEXT] = df[TEXT].apply(lambda x: word_tokenize(x))
+        # Remove stopwords
+        df[TEXT] = df[TEXT].apply(lambda x: [word for word in x if word not in self.stopwords])
+        # Lemmatize
+        df[TEXT] = df[TEXT].apply(lambda x: [self.lemmatizer.lemmatize(word) for word in x])
+        # Join
+        df[TEXT] = df[TEXT].apply(lambda x: " ".join(x))
         return df

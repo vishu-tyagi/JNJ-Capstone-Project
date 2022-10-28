@@ -23,9 +23,8 @@ class CapstoneConfig():
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY_BETA")
 
     # Features
-    NLP_MODEL = "en_core_web_lg"
-    NLP_STOPWORDS_TO_ADD: set[str] = {}
-    NLP_STOPWORDS_TO_DELETE: set[str] = {}
+    STOPWORDS_TO_ADD: list[str] = ["shall"]
+    STOPWORDS_TO_DELETE: list[str] = []
 
     TFIDF_FILE_NAME = "vectorizer.pickle"
     TFIDF_ANALYZERS = {"word"}

@@ -1,14 +1,11 @@
-from spacy import load as spacy_load
-from spacy.tokens.doc import Doc
-from spacy.language import Language
+import nltk
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.pipeline import FeatureUnion
-import nltk
 
 from capstone.config import CapstoneConfig
 
 
-def stopwords_init(config: CapstoneConfig = CapstoneConfig) -> Language:
+def stopwords_init(config: CapstoneConfig = CapstoneConfig) -> list[str]:
     """_summary_
     Args:
         config (CapstoneConfig): _description_

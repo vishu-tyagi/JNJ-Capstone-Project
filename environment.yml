@@ -9,6 +9,7 @@ dependencies:
   - openai==0.23.0
   - plotly==5.10.0
   - boto3==1.24.80
+  - nltk==3.6.7
   # Interactive
   - jupyter
   - matplotlib==3.5.3
@@ -20,3 +21,5 @@ dependencies:
   - pytest-pycodestyle==2.2.0
   # Pip
   - pip==22.2.2
+  - pip:
+    - xgboost

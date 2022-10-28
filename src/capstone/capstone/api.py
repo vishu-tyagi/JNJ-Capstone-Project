@@ -12,5 +12,5 @@ def fetch(config: CapstoneConfig = CapstoneConfig) -> None:
     logger.info("Fetching data...")
     data = DataClass(config)
     data.make_dirs()
-    data.build()
+    data.fetch()
     return

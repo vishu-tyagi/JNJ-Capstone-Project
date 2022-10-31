@@ -25,8 +25,8 @@ class CapstoneConfig():
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY_BETA")
 
     # Features
-    STOPWORDS_TO_ADD: list[str] = ["shall"]
-    STOPWORDS_TO_DELETE: list[str] = []
+    STOPWORDS_TO_ADD = ["shall"]
+    STOPWORDS_TO_DELETE = []
 
     TFIDF_FILE_NAME = "vectorizer.pickle"
     TFIDF_ANALYZERS = {"word"}

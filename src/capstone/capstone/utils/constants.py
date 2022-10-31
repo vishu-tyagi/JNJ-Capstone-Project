@@ -12,3 +12,10 @@ IS_MAPPED_TRUE = "Mapped to a standard"
 SPLIT = "Split"
 DEVELOP = "Development"
 TEST = "Test"
+
+HAMMING_LOSS = "Hamming Loss"
+ACCURACY = "Accuracy"
+PRECISION = "Precision"
+RECALL = "Recall"
+F1_SCORE = "F1 Score"
+

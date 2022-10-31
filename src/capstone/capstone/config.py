@@ -44,3 +44,20 @@ class CapstoneConfig():
         "min_df": 0.005,
         "max_df": .725
     }
+
+    CONFUSION_MATRIX_STYLER = \
+        [
+            {
+                "selector": ".matrix", "props": "position: relative;"
+            },
+            {
+                "selector": ".matrix:before, .matrix:after",
+                "props":  'content: ""; position: absolute; top: 0; border: 1px solid #000; width: 6px; height: 100%;'
+            },
+            {
+                "selector": ".matrix:before", "props": "left: -0px; border-right: -0;"
+            },
+            {
+                "selector": ".matrix:after", "props": "right: -0px; border-left: 0;"
+            }
+        ]

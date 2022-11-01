@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import (List, Optional)
 
 import numpy as np
 import pandas as pd
@@ -65,25 +65,25 @@ class CustomEvaluation():
         self,
         y_true: np.ndarray,
         y_pred: np.ndarray,
-        labels: list[str]
-        ) -> pd.DataFrame:
+        labels: List[str]
+    ) -> pd.DataFrame:
         multi_confusion_matirx = multilabel_confusion_matrix(y_true, y_pred)
         df = pd.DataFrame(
             [[(
-                pd.DataFrame(x) \
-                .style \
-                .hide(axis="index") \
-                .hide(axis="columns") \
-                .set_table_attributes("class='matrix'") \
+                pd.DataFrame(x)
+                .style
+                .hide(axis="index")
+                .hide(axis="columns")
+                .set_table_attributes("class='matrix'")
                 .to_html()
             ) for x in multi_confusion_matirx]],
             columns=labels,
-            index = [
-                pd.DataFrame(np.array([["TN", "FP"], ["FN", "TP"]])) \
-                .style \
-                .hide(axis="index") \
-                .hide(axis="columns") \
-                .set_table_attributes("class='matrix'") \
+            index=[
+                pd.DataFrame(np.array([["TN", "FP"], ["FN", "TP"]]))
+                .style
+                .hide(axis="index")
+                .hide(axis="columns")
+                .set_table_attributes("class='matrix'")
                 .to_html()
             ],
             dtype="object"
@@ -94,8 +94,8 @@ class CustomEvaluation():
         self,
         y_true: np.ndarray,
         y_pred: np.ndarray,
-        labels: list[str],
-        dev_samples: Optional[list[int]] = None
+        labels: List[str],
+        dev_samples: Optional[List[int]] = None
     ) -> pd.DataFrame:
         samples = y_true.sum(axis=0).tolist()
         scores = []

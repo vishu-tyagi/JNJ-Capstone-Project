@@ -1,3 +1,5 @@
+from typing import List
+
 import nltk
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.pipeline import FeatureUnion
@@ -5,7 +7,7 @@ from sklearn.pipeline import FeatureUnion
 from capstone.config import CapstoneConfig
 
 
-def stopwords_init(config: CapstoneConfig = CapstoneConfig) -> list[str]:
+def stopwords_init(config: CapstoneConfig = CapstoneConfig) -> List[str]:
     """_summary_
     Args:
         config (CapstoneConfig): _description_

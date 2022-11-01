@@ -1,4 +1,5 @@
 import os
+from typing import (List, Optional)
 
 
 class CapstoneConfig():
@@ -25,8 +26,8 @@ class CapstoneConfig():
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY_BETA")
 
     # Features
-    STOPWORDS_TO_ADD = ["shall"]
-    STOPWORDS_TO_DELETE = []
+    STOPWORDS_TO_ADD: Optional[List[str]] = ["shall"]
+    STOPWORDS_TO_DELETE: Optional[List[str]] = []
 
     TFIDF_FILE_NAME = "vectorizer.pickle"
     TFIDF_ANALYZERS = {"word"}
@@ -52,7 +53,8 @@ class CapstoneConfig():
             },
             {
                 "selector": ".matrix:before, .matrix:after",
-                "props":  'content: ""; position: absolute; top: 0; border: 1px solid #000; width: 6px; height: 100%;'
+                "props":  'content: ""; position: absolute; top: 0; \
+                border: 1px solid #000; width: 6px; height: 100%;'
             },
             {
                 "selector": ".matrix:before", "props": "left: -0px; border-right: -0;"

@@ -18,4 +18,3 @@ ACCURACY = "Accuracy"
 PRECISION = "Precision"
 RECALL = "Recall"
 F1_SCORE = "F1 Score"
-

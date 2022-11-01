@@ -72,8 +72,8 @@ class CustomEvaluation():
             [[(
                 pd.DataFrame(x)
                 .style
-                .hide(axis="index")
-                .hide(axis="columns")
+                .hide_index()
+                .hide_columns()
                 .set_table_attributes("class='matrix'")
                 .to_html()
             ) for x in multi_confusion_matirx]],
@@ -81,8 +81,8 @@ class CustomEvaluation():
             index=[
                 pd.DataFrame(np.array([["TN", "FP"], ["FN", "TP"]]))
                 .style
-                .hide(axis="index")
-                .hide(axis="columns")
+                .hide_index()
+                .hide_columns()
                 .set_table_attributes("class='matrix'")
                 .to_html()
             ],

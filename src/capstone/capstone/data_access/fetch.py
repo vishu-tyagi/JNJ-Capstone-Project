@@ -66,6 +66,7 @@ class DataClass():
             .apply(lambda x: [y.split(",") for y in x]) \
             .apply(lambda x: list(itertools.chain(*x))) \
             .apply(lambda x: [y.strip().replace("-", " ") for y in x if y.strip() != ""]) \
+            .apply(lambda x: [self.config.REPLACE_MAP[y] if y in self.config.REPLACE_MAP else y for y in x ]) \
             .apply(lambda x: ", ".join(x))
         df = df.groupby([TEXT], sort=False, as_index = False).agg({TARGET: ", ".join}).copy()
         df[TARGET] = \

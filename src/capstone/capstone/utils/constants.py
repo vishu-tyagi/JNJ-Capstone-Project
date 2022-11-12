@@ -7,6 +7,7 @@ XLSX_SHEET = "Requirements List"
 
 TEXT = "Text"
 TARGET = "Standard mapping?"
+ORIGINAL_TEXT = "Original Text"
 IS_MAPPED = "Mapped to a standard?"
 IS_MAPPED_TRUE = "Mapped to a standard"
 SPLIT = "Split"

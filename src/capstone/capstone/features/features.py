@@ -17,6 +17,7 @@ from capstone.utils.constants import (
     MODEL_DIR,
     TEXT,
     TARGET,
+    ORIGINAL_TEXT,
     SPLIT,
     DEVELOP,
     TEST
@@ -52,6 +53,7 @@ class Features():
 
     @timing
     def build(self, df: pd.DataFrame):
+        df[ORIGINAL_TEXT] = df[TEXT]
         self.mlb.fit(df[TARGET])
         Y = self.mlb.transform(df[TARGET])
         df = df.join(

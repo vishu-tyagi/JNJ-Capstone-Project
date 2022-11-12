@@ -25,6 +25,9 @@ class CapstoneConfig():
     # OpenAI beta key
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY_BETA")
 
+    # Remove less common topics
+    TOPIC_FREQUENCY_THRESHOLD = 35
+
     # Features
     STOPWORDS_TO_ADD: Optional[List[str]] = ["shall"]
     STOPWORDS_TO_DELETE: Optional[List[str]] = []

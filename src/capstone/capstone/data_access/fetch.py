@@ -65,5 +65,13 @@ class DataClass():
             .apply(lambda x: list(x.split("\n"))) \
             .apply(lambda x: [y.split(",") for y in x]) \
             .apply(lambda x: list(itertools.chain(*x))) \
-            .apply(lambda x: [y.strip().replace("-", " ") for y in x if y.strip() != ""])
+            .apply(lambda x: [y.strip().replace("-", " ") for y in x if y.strip() != ""]) \
+            .apply(lambda x: sorted(x)) \
+            .apply(lambda x: ", ".join(x))
+        df = df.groupby([TEXT], as_index = False).agg({TARGET: ", ".join}).copy()
+        df[TARGET] = \
+            df[TARGET] \
+            .apply(lambda x: x.split(", ")) \
+            .apply(lambda x: list(set(x))) \
+            .apply(lambda x: sorted(x))
         return df

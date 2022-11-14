@@ -9,6 +9,7 @@ from sklearn.metrics import (
     zero_one_loss as _zero_one_loss,
     recall_score as _recall_score,
     f1_score as _f1_score,
+    fbeta_score as _fbeta_score,
     multilabel_confusion_matrix
 )
 
@@ -18,13 +19,17 @@ from capstone.utils.constants import (
     ACCURACY,
     PRECISION,
     RECALL,
-    F1_SCORE
+    F1_SCORE,
+    F2_SCORE
 )
 
 
 class CustomEvaluation():
     def __init__(self, config: CapstoneConfig = CapstoneConfig):
-        pass
+        self.thresholds = [
+            .1, .15, .2, .25, .3, .35, .4, .45, .5,
+            .55, .6, .65, .7, .75, .8, .85, .9, .95
+        ]
 
     def hamming_loss(self, y_true: np.ndarray, y_pred: np.ndarray):
         return _hamming_loss(y_true, y_pred)
@@ -46,9 +51,9 @@ class CustomEvaluation():
             y_true, y_pred, average="samples", zero_division=0
         )
 
-    def f1_score(self, y_true: np.ndarray, y_pred: np.ndarray):
-        return _f1_score(
-            y_true, y_pred, average="samples", zero_division=0
+    def fbeta_score(self, y_true: np.ndarray, y_pred: np.ndarray, beta: np.float64):
+        return _fbeta_score(
+            y_true, y_pred, beta=beta, average="samples", zero_division=0
         )
 
     def compute_sample_wise_metrics(self, y_true: np.ndarray, y_pred: np.ndarray) -> pd.DataFrame:
@@ -56,9 +61,10 @@ class CustomEvaluation():
         accuracy = self.exact_matching_ratio(y_true, y_pred)
         precision_score = self.precision_score(y_true, y_pred)
         recall_score = self.recall_score(y_true, y_pred)
-        f1_score = self.f1_score(y_true, y_pred)
-        scores = [hamming_loss, accuracy, precision_score, recall_score, f1_score]
-        metrics = [HAMMING_LOSS, ACCURACY, PRECISION, RECALL, F1_SCORE]
+        f1_score = self.fbeta_score(y_true, y_pred, beta=1)
+        f2_score = self.fbeta_score(y_true, y_pred, beta=2)
+        scores = [hamming_loss, accuracy, precision_score, recall_score, f1_score, f2_score]
+        metrics = [HAMMING_LOSS, ACCURACY, PRECISION, RECALL, F1_SCORE, F2_SCORE]
         return pd.Series(data=scores, index=metrics)
 
     def compute_multilabel_confusion_matrix(
@@ -104,15 +110,36 @@ class CustomEvaluation():
             predicted = y_pred[:, i]
             precision_score = _precision_score(gt, predicted, zero_division=0)
             recall_score = _recall_score(gt, predicted, zero_division=0)
-            f1_score = _f1_score(gt, predicted, zero_division=0)
-            row = [precision_score, recall_score, f1_score]
+            f1_score = _fbeta_score(gt, predicted, beta=1, zero_division=0)
+            f2_score = _fbeta_score(gt, predicted, beta=2, zero_division=0)
+            row = [precision_score, recall_score, f1_score, f2_score]
             if dev_samples is not None:
                 row.append(dev_samples[i])
             row.append(samples[i])
             scores.append(row)
-        columns = [PRECISION, RECALL, F1_SCORE]
+        columns = [PRECISION, RECALL, F1_SCORE, F2_SCORE]
         if dev_samples is not None:
             columns.append("Development Samples")
         columns.append("Test Samples")
         df = pd.DataFrame(scores, index=labels, columns=columns)
         return df
+
+    def threshold_discovery(self, y_true: np.ndarray, y_pred_probab: np.ndarray):
+        n = y_true.shape[1]
+        optimal_thresholds = []
+
+        for j in range(n):
+            gt = y_true[:, j].reshape(-1,)
+            probab = y_pred_probab[:, j].reshape(-1,)
+
+            score, threshold = 0, .5
+            for th in self.thresholds:
+                pred = np.where(probab > th, 1, 0)
+                f2_score = _fbeta_score(gt, pred, beta=2, zero_division=0)
+                if f2_score > score:
+                    score = f2_score
+                    threshold = th
+
+            optimal_thresholds.append(threshold)
+
+        return np.array(optimal_thresholds).reshape(-1,)

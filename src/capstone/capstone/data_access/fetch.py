@@ -65,5 +65,31 @@ class DataClass():
             .apply(lambda x: list(x.split("\n"))) \
             .apply(lambda x: [y.split(",") for y in x]) \
             .apply(lambda x: list(itertools.chain(*x))) \
-            .apply(lambda x: [y.strip().replace("-", " ") for y in x if y.strip() != ""])
+            .apply(lambda x: [y.strip().replace("-", " ") for y in x if y.strip() != ""]) \
+            .apply(lambda x: [self.config.REPLACE_MAP[y] if y in self.config.REPLACE_MAP else y for y in x ]) \
+            .apply(lambda x: ", ".join(x))
+        df = df.groupby([TEXT], sort=False, as_index = False).agg({TARGET: ", ".join}).copy()
+        df[TARGET] = \
+            df[TARGET] \
+            .apply(lambda x: x.split(", ")) \
+            .apply(lambda x: list(set(x)))
+        # Remove less common topics
+        target_column = df[TARGET].tolist()
+        target_flat = [item for target in target_column for item in target]
+        hash_map = dict()
+        for item in target_flat:
+            if item in hash_map:
+                hash_map[item] += 1
+            else:
+                hash_map[item] = 1
+        remove_classes = list()
+        for item in hash_map:
+            if hash_map[item] < self.config.TOPIC_FREQUENCY_THRESHOLD:
+                remove_classes.append(item)
+        df[TARGET] = \
+            df[TARGET] \
+            .apply(lambda x: [y for y in x if y not in remove_classes]) \
+            .apply(lambda x: sorted(x))
+        df = df[df[TARGET].apply(lambda x: len(x)) != 0].copy()
+        df.reset_index(drop=True, inplace=True)
         return df

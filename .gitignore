@@ -7,4 +7,5 @@
 /reports/
 /model/
 /notebooks/.ipynb_checkpoints
+/saved_models/
 out/

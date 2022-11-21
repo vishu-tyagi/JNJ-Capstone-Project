@@ -1,6 +1,7 @@
 DATA_DIR = "data"
 MODEL_DIR = "model"
 REPORTS_DIR = "reports"
+SAVED_MODELS = "saved_models"
 
 XLSX_DATA = "Regulatory Requirements.xlsx"
 XLSX_SHEET = "Requirements List"

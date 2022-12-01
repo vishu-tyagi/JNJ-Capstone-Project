@@ -20,3 +20,6 @@ PRECISION = "Precision"
 RECALL = "Recall"
 F1_SCORE = "F1 Score"
 F2_SCORE = "F2 Score"
+
+PREDICTION = "prediction"
+CORRECTED = "corrected_prediction"

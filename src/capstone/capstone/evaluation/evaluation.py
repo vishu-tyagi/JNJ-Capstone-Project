@@ -144,3 +144,16 @@ class CustomEvaluation():
             optimal_thresholds.append(threshold)
 
         return np.array(optimal_thresholds).reshape(-1,)
+
+    def majority_vote(self, arr: List[str], minimum_votes: int) -> List[str]:
+        d = {}
+        for topic in arr:
+            if topic in d:
+                d[topic] += 1
+            else:
+                d[topic] = 1
+        result = []
+        for topic in d:
+            if d[topic] >= minimum_votes:
+                result.append(topic)
+        return result

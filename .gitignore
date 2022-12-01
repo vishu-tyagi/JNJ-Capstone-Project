@@ -6,4 +6,6 @@
 **/*.pyc
 /model/
 /notebooks/.ipynb_checkpoints
+/saved_models/
 out/
+/saved_models/

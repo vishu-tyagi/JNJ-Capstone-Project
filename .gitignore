@@ -4,7 +4,8 @@
 /data/*
 **/__pycache__
 **/*.pyc
-/reports/
 /model/
 /notebooks/.ipynb_checkpoints
+/saved_models/
 out/
+/saved_models/

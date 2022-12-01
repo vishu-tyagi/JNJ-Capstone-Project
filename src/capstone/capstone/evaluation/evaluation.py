@@ -132,7 +132,8 @@ class CustomEvaluation():
             gt = y_true[:, j].reshape(-1,)
             probab = y_pred_probab[:, j].reshape(-1,)
 
-            score, threshold = 0, .5
+            score = _fbeta_score(gt, np.where(probab > .5, 1, 0), beta=2, zero_division=0)
+            threshold = .5
             for th in self.thresholds:
                 pred = np.where(probab > th, 1, 0)
                 f2_score = _fbeta_score(gt, pred, beta=2, zero_division=0)
@@ -143,3 +144,16 @@ class CustomEvaluation():
             optimal_thresholds.append(threshold)
 
         return np.array(optimal_thresholds).reshape(-1,)
+
+    def majority_vote(self, arr: List[str], minimum_votes: int) -> List[str]:
+        d = {}
+        for topic in arr:
+            if topic in d:
+                d[topic] += 1
+            else:
+                d[topic] = 1
+        result = []
+        for topic in d:
+            if d[topic] >= minimum_votes:
+                result.append(topic)
+        return result

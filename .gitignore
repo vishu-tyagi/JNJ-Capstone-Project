@@ -9,3 +9,4 @@
 /saved_models/
 out/
 /saved_models/
+.dockerignore

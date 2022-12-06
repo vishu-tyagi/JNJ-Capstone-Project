@@ -2,6 +2,7 @@ name: capstone
 channels:
   - conda-forge
   - plotly
+  - pytorch
 dependencies:
   - python==3.9.13
   - pandas==1.4.4
@@ -10,6 +11,11 @@ dependencies:
   - plotly==5.10.0
   - boto3==1.24.80
   - nltk==3.6.7
+  - pytorch==1.13.0
+  - torchvision==0.2.2
+  - torchaudio==0.13.0
+  - cuda==11.7.1
+  - transformers==4.24.0
   # Interactive
   - jupyter
   - matplotlib==3.5.3

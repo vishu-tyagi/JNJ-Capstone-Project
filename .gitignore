@@ -10,3 +10,4 @@
 out/
 /saved_models/
 .dockerignore
+reports/*.pth

@@ -25,10 +25,10 @@ Vishweshwar Tyagi (captain), Daoxing Zhang, Siqi He, Siwen Xie, Yihao Gao
 ### Sponsor/Mentor:
 Frank Janssens, Majd Mustapha
 
-### Instructor: 
+### Instructor:
 Adam Kelleher
 
-### CA: 
+### CA:
 Xuanyu Li
 
 
@@ -61,11 +61,14 @@ Including the optional -e flag will install the package in "editable" mode, mean
 python -m capstone fetch
 ```
 
+#### Download NLTK data
+```
+python -m nltk.downloader all
+```
+
 #### Run jupyter server
 ```
 jupyter notebook notebooks/
 ```
 
 You can now use the jupyter kernel to run notebooks.
-
-

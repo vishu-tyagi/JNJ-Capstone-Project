@@ -77,7 +77,7 @@ You can now use the jupyter kernel to run notebooks.
 
 The notebooks may be viewed in the following order:
 
-1. *eda.ipynb* - Exploratory Data Analysis
+1. *[eda.ipynb](notebooks/eda.ipynb)* - Exploratory Data Analysis
 
 2. *naive-model-evaluation.ipynb* - Results from naive model which predicts the most common target (multi-label binarized vector) in the development set
 

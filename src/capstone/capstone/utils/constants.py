@@ -14,6 +14,11 @@ IS_MAPPED_TRUE = "Mapped to a standard"
 SPLIT = "Split"
 DEVELOP = "Development"
 TEST = "Test"
+CLUSTER = "Assigned Cluster"
+MAJORITY = "First Majority"
+SECOND_MAJORITY = "Second Majority"
+REDUCED_DIMS = ["reduced_x", "reduced_y"]
+TARGET_NUMERIC = "Numeric Target"
 
 HAMMING_LOSS = "Hamming Loss"
 ACCURACY = "Accuracy"

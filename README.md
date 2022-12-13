@@ -85,10 +85,10 @@ The notebooks may be viewed in the following order:
 
 3. *[bert_evaluation.ipynb](notebooks/bert_evaluation.ipynb)* - Results from fine-tuned BERT model
 
-4. *[ada-evaluation.ipynb](notebooks/ada-evaluation.ipynb)* - Results from fine-tuned ADA model
+4. *[ada-evaluation.ipynb](notebooks/ada-evaluation.ipynb)* - Results from fine-tuned Ada model
 
 5. *[curie-evaluation.ipynb](notebooks/curie-evaluation.ipynb)* - Results from fine-tuned Curie model
 
 6. *[davinci-evaluation.ipynb](notebooks/davinci-evaluation.ipynb)* - Results from fine-tuned Davinci model
 
-
+7. *[ensemble-evaluation.ipynb](notebooks/ensemble-evaluation.ipynb)* - Results from ensemble of BERT, Ada, and Curie based on majority vote

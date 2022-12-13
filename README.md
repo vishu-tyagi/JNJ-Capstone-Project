@@ -79,16 +79,16 @@ The notebooks may be viewed in the following order:
 
 1. *[eda.ipynb](notebooks/eda.ipynb)* - Exploratory Data Analysis
 
-2. *naive-model-evaluation.ipynb* - Results from naive model which predicts the most common target (multi-label binarized vector) in the development set
+2. *[naive-model-evaluation.ipynb](notebooks/naive-model-evaluation.ipynb)* - Results from naive model which predicts the most common target (multi-label binarized vector) in the development set
 
-2. *baseline-evaluation.ipynb* - Results from baseline Random Forest trained on TF-IDF features
+2. *[baseline-evaluation.ipynb](notebooks/baseline-evaluation.ipynb)* - Results from baseline Random Forest trained on TF-IDF features
 
-3. *bert_evaluation.ipynb* - Results from fine-tuned BERT model
+3. *[bert_evaluation.ipynb](notebooks/bert_evaluation.ipynb)* - Results from fine-tuned BERT model
 
-4. *ada-evaluation.ipynb* - Results from fine-tuned ADA model
+4. *[ada-evaluation.ipynb](notebooks/ada-evaluation.ipynb)* - Results from fine-tuned ADA model
 
-5. *curie-evaluation.ipynb* - Results from fine-tuned Curie model
+5. *[curie-evaluation.ipynb](notebooks/curie-evaluation.ipynb)* - Results from fine-tuned Curie model
 
-6. *davinci-evaluation.ipynb* - Results from fine-tuned Davinci model
+6. *[davinci-evaluation.ipynb](notebooks/davinci-evaluation.ipynb)* - Results from fine-tuned Davinci model
 
 

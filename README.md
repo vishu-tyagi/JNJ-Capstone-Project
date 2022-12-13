@@ -72,3 +72,23 @@ jupyter notebook notebooks/
 ```
 
 You can now use the jupyter kernel to run notebooks.
+
+## Notebooks
+
+The notebooks may be viewed in the following order:
+
+1. *eda.ipynb* - Exploratory Data Analysis
+
+2. *naive-model-evaluation.ipynb* - Results from naive model which predicts the most common target (multi-label binarized vector) in the development set
+
+2. *baseline-evaluation.ipynb* - Results from baseline Random Forest trained on TF-IDF features
+
+3. *bert_evaluation.ipynb* - Results from fine-tuned BERT model
+
+4. *ada-evaluation.ipynb* - Results from fine-tuned ADA model
+
+5. *curie-evaluation.ipynb* - Results from fine-tuned Curie model
+
+6. *davinci-evaluation.ipynb* - Results from fine-tuned Davinci model
+
+

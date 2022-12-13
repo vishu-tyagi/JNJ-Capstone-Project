@@ -18,7 +18,7 @@ dependencies:
   - cuda-toolkit==11.7.1
   - transformers==4.24.0
   # Interactive
-  - jupyter
+  - jupyter==1.0.0
   - matplotlib==3.5.3
   - seaborn==0.12.0
   # Testing
@@ -29,3 +29,4 @@ dependencies:
   # Pip
   - pip==22.2.2
   - pip:
+    - hdbscan

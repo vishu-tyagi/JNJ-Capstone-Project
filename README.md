@@ -92,3 +92,7 @@ The notebooks may be viewed in the following order:
 6. *[davinci-evaluation.ipynb](notebooks/davinci-evaluation.ipynb)* - Results from fine-tuned Davinci model
 
 7. *[ensemble-evaluation.ipynb](notebooks/ensemble-evaluation.ipynb)* - Results from ensemble of BERT, Ada, and Curie based on majority vote
+
+8. *[bert_embeddings.ipynb](notebooks/bert_embeddings.ipynb)* - Evaluate embeddings of fine-tuned BERT against vanilla BERT on (unsupervised) clustering task
+
+9. *[gpt3-embeddings.ipynb](notebooks/gpt3-embeddings.ipynb)* - Evaluate embeddings of vanilla GPT-3 models (Ada, Curie and Davinci) on (unsupervised) clustering task

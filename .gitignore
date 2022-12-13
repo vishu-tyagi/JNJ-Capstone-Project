@@ -11,3 +11,4 @@ out/
 /saved_models/
 .dockerignore
 reports/*.pth
+reports/*embeddings.pkl

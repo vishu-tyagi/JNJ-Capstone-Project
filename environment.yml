@@ -3,6 +3,7 @@ channels:
   - conda-forge
   - plotly
   - pytorch
+  - nvidia
 dependencies:
   - python==3.9.13
   - pandas==1.4.4
@@ -14,7 +15,7 @@ dependencies:
   - pytorch==1.13.0
   - torchvision==0.2.2
   - torchaudio==0.13.0
-  - cuda==11.7.1
+  - cuda-toolkit==11.7.1
   - transformers==4.24.0
   # Interactive
   - jupyter
@@ -28,4 +29,3 @@ dependencies:
   # Pip
   - pip==22.2.2
   - pip:
-    - xgboost

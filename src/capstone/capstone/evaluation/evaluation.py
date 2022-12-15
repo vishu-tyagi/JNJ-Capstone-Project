@@ -195,7 +195,7 @@ class CustomEvaluation():
     ):
         rows = []
         labels_which_got_assigned = []
-        for c in set(clusters.tolist()):
+        for c in set(clusters.tolist()) - set({-1}):
             labels = y_true[clusters == c]
             labels_sorted = sorted(
                 list(set(labels.tolist())),

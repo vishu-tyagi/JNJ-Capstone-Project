@@ -99,6 +99,8 @@ The notebooks may be viewed in the following order:
 
 11. *[gpt3-embeddings-whole-set.ipynb](notebooks/gpt3-embeddings-whole-set.ipynb)* - Evaluate embeddings of vanilla GPT-3 models (Ada, Curie and Davinci) on (unsupervised) clustering task (whole dataset)
 
-12. *[JnJ-Janssens_JnJ-3_Final_Report.pdf](reports/JnJ-Janssens_JnJ-3_Final_Report.pdf)* - Final report
+## Reports
 
-13. *[JnJ-Janssens_JnJ-3_Poster.pdf ](reports/JnJ-Janssens_JnJ-3_Poster.pdf)* - Poster
+1. *[JnJ-Janssens_JnJ-3_Final_Report.pdf](reports/JnJ-Janssens_JnJ-3_Final_Report.pdf)* - Final report
+
+2. *[JnJ-Janssens_JnJ-3_Poster.pdf ](reports/JnJ-Janssens_JnJ-3_Poster.pdf)* - Poster

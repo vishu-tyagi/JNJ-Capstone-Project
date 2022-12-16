@@ -219,7 +219,7 @@ class CustomEvaluation():
                 c
             ])
             labels_which_got_assigned.append(most_common_label)
-        rows = sorted(rows, key=lambda x: x[0][1], reverse=True)
+        rows = sorted(rows, key=lambda x: x[0][0], reverse=False)
         df = pd.DataFrame(rows, columns=[MAJORITY, SECOND_MAJORITY, CLUSTER])
         counts = {}
         for label in labels_which_got_assigned:

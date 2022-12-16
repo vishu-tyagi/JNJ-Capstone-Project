@@ -81,20 +81,26 @@ The notebooks may be viewed in the following order:
 
 2. *[naive-model-evaluation.ipynb](notebooks/naive-model-evaluation.ipynb)* - Results from naive model which predicts the most common target (multi-label binarized vector) in the development set
 
-2. *[baseline-evaluation.ipynb](notebooks/baseline-evaluation.ipynb)* - Results from baseline Random Forest trained on TF-IDF features
+3. *[baseline-evaluation.ipynb](notebooks/baseline-evaluation.ipynb)* - Results from baseline Random Forest trained on TF-IDF features
 
-3. *[bert_evaluation.ipynb](notebooks/bert_evaluation.ipynb)* - Results from fine-tuned BERT
+4. *[bert_evaluation.ipynb](notebooks/bert_evaluation.ipynb)* - Results from fine-tuned BERT
 
-4. *[ada-evaluation.ipynb](notebooks/ada-evaluation.ipynb)* - Results from fine-tuned Ada
+5. *[ada-evaluation.ipynb](notebooks/ada-evaluation.ipynb)* - Results from fine-tuned Ada
 
-5. *[curie-evaluation.ipynb](notebooks/curie-evaluation.ipynb)* - Results from fine-tuned Curie
+6. *[curie-evaluation.ipynb](notebooks/curie-evaluation.ipynb)* - Results from fine-tuned Curie
 
-6. *[davinci-evaluation.ipynb](notebooks/davinci-evaluation.ipynb)* - Results from fine-tuned Davinci
+7. *[davinci-evaluation.ipynb](notebooks/davinci-evaluation.ipynb)* - Results from fine-tuned Davinci
 
-7. *[ensemble-evaluation.ipynb](notebooks/ensemble-evaluation.ipynb)* - Results from ensemble of BERT, Ada, and Curie based on majority vote
+8. *[ensemble-evaluation.ipynb](notebooks/ensemble-evaluation.ipynb)* - Results from ensemble of BERT, Ada, and Curie based on majority vote
 
-8. *[bert_embeddings.ipynb](notebooks/bert_embeddings.ipynb)* - Evaluate embeddings of fine-tuned BERT against vanilla BERT on (unsupervised) clustering task (test dataset)
+9. *[bert_embeddings.ipynb](notebooks/bert_embeddings.ipynb)* - Evaluate embeddings of fine-tuned BERT against vanilla BERT on (unsupervised) clustering task (test dataset)
 
-9. *[gpt3-embeddings-test-set.ipynb](notebooks/gpt3-embeddings-test-set.ipynb)* - Evaluate embeddings of vanilla GPT-3 models (Ada, Curie and Davinci) on (unsupervised) clustering task (test dataset)
+10. *[gpt3-embeddings-test-set.ipynb](notebooks/gpt3-embeddings-test-set.ipynb)* - Evaluate embeddings of vanilla GPT-3 models (Ada, Curie and Davinci) on (unsupervised) clustering task (test dataset)
 
-10. *[gpt3-embeddings-whole-set.ipynb](notebooks/gpt3-embeddings-whole-set.ipynb)* - Evaluate embeddings of vanilla GPT-3 models (Ada, Curie and Davinci) on (unsupervised) clustering task (whole dataset)
+11. *[gpt3-embeddings-whole-set.ipynb](notebooks/gpt3-embeddings-whole-set.ipynb)* - Evaluate embeddings of vanilla GPT-3 models (Ada, Curie and Davinci) on (unsupervised) clustering task (whole dataset)
+
+## Reports
+
+1. *[JnJ-Janssens_JnJ-3_Final_Report.pdf](reports/JnJ-Janssens_JnJ-3_Final_Report.pdf)* - Final report
+
+2. *[JnJ-Janssens_JnJ-3_Poster.pdf ](reports/JnJ-Janssens_JnJ-3_Poster.pdf)* - Poster

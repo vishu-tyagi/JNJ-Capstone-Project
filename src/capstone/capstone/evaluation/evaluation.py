@@ -2,6 +2,8 @@ from typing import (List, Optional)
 
 import numpy as np
 import pandas as pd
+from sklearn.cluster import KMeans
+from scipy.spatial.distance import cdist
 from sklearn.metrics import (
     accuracy_score as _accuracy_score,
     precision_score as _precision_score,
@@ -14,13 +16,17 @@ from sklearn.metrics import (
 )
 
 from capstone.config import CapstoneConfig
+from capstone.features import Features
 from capstone.utils.constants import (
     HAMMING_LOSS,
     ACCURACY,
     PRECISION,
     RECALL,
     F1_SCORE,
-    F2_SCORE
+    F2_SCORE,
+    CLUSTER,
+    MAJORITY,
+    SECOND_MAJORITY
 )
 
 
@@ -157,3 +163,78 @@ class CustomEvaluation():
             if d[topic] >= minimum_votes:
                 result.append(topic)
         return result
+
+    def elbow_method(self, embeddings: np.ndarray, k_values: List):
+        distortions = []
+        inertias = []
+        mapping1 = {}
+        mapping2 = {}
+        for k in k_values:
+            kmeans = KMeans(n_clusters=k, random_state=0)
+            kmeanModel = kmeans.fit(embeddings)
+            distortions.append(
+                sum(np.min(
+                    cdist(embeddings, kmeanModel.cluster_centers_, "euclidean"),
+                    axis=1
+                )) / embeddings.shape[0]
+            )
+            inertias.append(kmeanModel.inertia_)
+            mapping1[k] = sum(np.min(
+                cdist(embeddings, kmeanModel.cluster_centers_, "euclidean"),
+                axis=1
+            )) / embeddings.shape[0]
+            mapping2[k] = kmeanModel.inertia_
+        return distortions, inertias
+
+    def compute_purity_scores(
+        self,
+        clusters: np.ndarray,
+        y_true: np.ndarray,
+        topics: set(),
+        features: Features
+    ):
+        rows = []
+        labels_which_got_assigned = []
+        for c in set(clusters.tolist()) - set({-1}):
+            labels = y_true[clusters == c]
+            labels_sorted = sorted(
+                list(set(labels.tolist())),
+                key=labels.tolist().count,
+                reverse=True
+            )
+            most_common = labels_sorted[0]
+            second_most_common = \
+                labels_sorted[1] if len(labels_sorted) > 1 else -1
+            max_purity = sum(labels == most_common) / len(labels)
+            second_max_purity = \
+                sum(labels == second_most_common) / len(labels) \
+                if second_most_common != -1 else 0.0
+            most_common_label = features.mlb.classes_[most_common]
+            second_most_common_label = \
+                features.mlb.classes_[second_most_common] \
+                if second_most_common != -1 else -1
+            rows.append([
+                (most_common_label, f"{max_purity:.3}"),
+                (second_most_common_label, f"{second_max_purity:.3}"),
+                c
+            ])
+            labels_which_got_assigned.append(most_common_label)
+        rows = sorted(rows, key=lambda x: x[0][0], reverse=False)
+        df = pd.DataFrame(rows, columns=[MAJORITY, SECOND_MAJORITY, CLUSTER])
+        counts = {}
+        for label in labels_which_got_assigned:
+            counts[label] = 1 if label not in counts else (counts[label] + 1)
+        missing = topics - set(counts.keys())
+        multiple = [(label, counts[label]) for label in counts if counts[label] > 1]
+        return df, missing, multiple
+
+    def sanity_check(self, scores: dict()):
+        counts = {}
+        for c in scores:
+            if scores[c][1] not in counts:
+                counts[scores[c][1]] = 1
+            else:
+                counts[scores[c][1]] += 1
+        missing = set(features.mlb.classes_) - set([c for c in counts])
+        multiple = [(c, counts[c]) for c in counts if counts[c] > 1]
+        return missing, multiple
